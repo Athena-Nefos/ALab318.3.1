@@ -15,7 +15,13 @@ router
         },
     ];
 
-    res.json({ posts, links });
+    if (req.query.userId) {
+        const userPosts = posts.filter((p) => p.userId == req.query.userId);
+        res.json({ userPosts, links });
+    } else {
+        res.json({ posts, links });
+    }
+
     })
     .post((req, res, next) => {
     if (req.body.userId && req.body.title && req.body.content) {
@@ -76,5 +82,8 @@ router
     if (post) res.json(post);
     else next();
     });
+
+
+
 
 module.exports = router;

@@ -3,6 +3,12 @@ const router = express.Router();
 
 const users = require("../data/users");
 const error = require("../utilities/error");
+const posts = require("../data/posts");
+
+// router.use((req, res, next) => {
+//     console.log("Users Route");
+//     next();
+// });
 
 router
     .route("/")
@@ -80,5 +86,32 @@ router
     if (user) res.json(user);
     else next();
             });
+
+router
+    .route("/:id/posts")
+    .get((req, res, next) => {
+        // console.log("hi");
+    const post = posts.filter((p) => p.userId == req.params.id);
+// console.log("bye");
+    const links = [
+        {
+        href: `/${req.params.id}/posts`,
+        rel: "",
+        type: "PATCH",
+        },
+        {
+        href: `/${req.params.id}/posts`,
+        rel: "",
+        type: "DELETE",
+            },
+    ];
+
+    if (post.length > 0) res.json({post, links});
+    else next();
+        });
+
+        
+
+
 
 module.exports = router;

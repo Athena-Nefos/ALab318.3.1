@@ -28,7 +28,7 @@ ${time.toLocaleTimeString()}: Received a ${req.method} request to ${req.url}.`
     next();
 });
 
-// Valid API Keys.
+ /* // Valid API Keys.
 apiKeys = ["perscholas", "ps-example", "hJAsknw-L198sAJD-l3kasx"];
 
 // New middleware to check for API keys!
@@ -48,7 +48,7 @@ app.use("/api", function (req, res, next) {
   // Valid key! Store it in req.key for route access.
     req.key = key;
     next();
-});
+}); */
 
 // Use our Routes
 app.use("/api/users", users);
